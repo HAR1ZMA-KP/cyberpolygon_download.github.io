@@ -3,27 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Архив учебных материалов</title>
+    <title>Учебный архив | Материалы для обучения</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --success: #27ae60;
-            --warning: #f39c12;
-            --danger: #e74c3c;
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #7209b7;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --text: #2b2d42;
+            --success: #4cc9f0;
+            --error: #f72585;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
         }
 
         .container {
@@ -32,108 +37,160 @@
             padding: 0 20px;
         }
 
+        /* Шапка */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--dark));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 2rem 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 3rem 0;
             position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
         }
 
         .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            position: relative;
+            z-index: 2;
+            text-align: center;
         }
 
         .logo {
-            font-size: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: white;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo i {
-            font-size: 1.8rem;
             transition: transform 0.3s ease;
         }
 
-        .logo:hover i {
-            transform: rotate(15deg);
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo i {
+            font-size: 2.2rem;
+            color: #f72585;
         }
 
         h1 {
-            margin: 0;
-            font-size: 2.2rem;
-            font-weight: 600;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
 
         .subtitle {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             opacity: 0.9;
-            margin-top: 0.5rem;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
+        /* Основное содержимое */
         main {
-            padding: 2rem 0;
+            padding: 4rem 0;
         }
 
         .materials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
+            gap: 30px;
+            margin-top: 2rem;
         }
 
+        /* Карточка задания */
         .material-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            border-top: 4px solid var(--secondary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
         }
 
         .material-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
         }
 
         .card-header {
-            padding: 1.5rem;
-            background-color: var(--light);
-            border-bottom: 1px solid #eee;
+            padding: 1.8rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            position: relative;
         }
 
         .card-header h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
             margin: 0;
-            color: var(--primary);
-            font-size: 1.4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
         }
 
         .card-body {
-            padding: 1.5rem;
+            padding: 1.8rem;
         }
 
         .features-list {
             list-style: none;
-            padding: 0;
-            margin: 0 0 1.5rem 0;
+            margin-bottom: 1.5rem;
         }
 
         .feature-item {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             margin-bottom: 0.8rem;
-            line-height: 1.5;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
         }
 
         .feature-icon {
-            margin-right: 10px;
-            font-size: 1.1rem;
-            min-width: 20px;
+            margin-right: 12px;
+            font-size: 1.2rem;
+            min-width: 24px;
+            text-align: center;
         }
 
         .feature-success {
@@ -141,61 +198,94 @@
         }
 
         .feature-error {
-            color: var(--danger);
+            color: var(--error);
         }
 
         .material-description {
-            background-color: var(--light);
-            padding: 1rem;
-            border-radius: 6px;
-            margin-top: 1rem;
+            background: rgba(67, 97, 238, 0.05);
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.7;
+            border-left: 3px solid var(--primary);
         }
 
         .btn {
-            display: inline-block;
-            padding: 0.7rem 1.5rem;
-            background-color: var(--secondary);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.9rem 1.8rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
             color: white;
             text-decoration: none;
-            border-radius: 6px;
-            font-weight: 500;
+            border-radius: 50px;
+            font-weight: 600;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
             font-size: 1rem;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
         }
 
         .btn:hover {
-            background-color: #2980b9;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(41, 128, 185, 0.3);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
         }
 
-        .btn-block {
-            display: block;
-            width: 100%;
-            text-align: center;
+        .btn i {
+            font-size: 1.1rem;
         }
 
+        /* Подвал */
         footer {
-            background-color: var(--dark);
+            background: var(--dark);
             color: white;
-            padding: 2rem 0;
+            padding: 3rem 0;
             text-align: center;
-            margin-top: 3rem;
         }
 
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 1.5rem 0;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивность */
         @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
             .materials-grid {
                 grid-template-columns: 1fr;
             }
             
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
+            .card-header, .card-body {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -205,13 +295,11 @@
         <div class="container">
             <div class="header-content">
                 <a href="#" class="logo">
-                    <i class="fas fa-book-open"></i>
+                    <i class="fas fa-graduation-cap"></i>
                     <span>Учебный архив</span>
                 </a>
-                <div class="header-text">
-                    <h1>Архив учебных материалов</h1>
-                    <p class="subtitle">Скачивайте задания, лекции и дополнительные материалы</p>
-                </div>
+                <h1>Материалы для обучения</h1>
+                <p class="subtitle">Доступ к учебным заданиям, лекциям и дополнительным материалам</p>
             </div>
         </div>
     </header>
@@ -220,96 +308,112 @@
         <div class="container">
             <div class="materials-grid">
                 <!-- Задание 1 -->
-                <div class="material-card">
+                <article class="material-card">
                     <div class="card-header">
                         <h2>Задание 1</h2>
                     </div>
                     <div class="card-body">
                         <ul class="features-list">
                             <li class="feature-item">
-                                <i class="fas fa-check feature-icon feature-success"></i>
+                                <i class="fas fa-check-circle feature-icon feature-success"></i>
                                 <span>Основы работы с оборудованием</span>
                             </li>
                             <li class="feature-item">
-                                <i class="fas fa-check feature-icon feature-success"></i>
+                                <i class="fas fa-check-circle feature-icon feature-success"></i>
                                 <span>Современные серверные решения</span>
                             </li>
                             <li class="feature-item">
-                                <i class="fas fa-times feature-icon feature-error"></i>
+                                <i class="fas fa-times-circle feature-icon feature-error"></i>
                                 <span>Ограничения системной архитектуры</span>
                             </li>
                             <li class="feature-item">
-                                <i class="fas fa-times feature-icon feature-error"></i>
+                                <i class="fas fa-times-circle feature-icon feature-error"></i>
                                 <span>Нестандартные ядра</span>
                             </li>
                         </ul>
                         <div class="material-description">
-                            Подробное описание материалов для задания. Включает теоретические основы и практические примеры работы с современным оборудованием.
+                            Подробное описание материала для задания. Включает теоретические основы и практические примеры работы с современным оборудованием.
                         </div>
-                        <a href="#" class="btn btn-block">Скачать материалы</a>
+                        <a href="#" class="btn">
+                            <i class="fas fa-download"></i>
+                            Скачать материалы
+                        </a>
                     </div>
-                </div>
+                </article>
 
                 <!-- Задание 2 -->
-                <div class="material-card">
+                <article class="material-card">
                     <div class="card-header">
                         <h2>Задание 2</h2>
                     </div>
                     <div class="card-body">
                         <ul class="features-list">
                             <li class="feature-item">
-                                <i class="fas fa-check feature-icon feature-success"></i>
+                                <i class="fas fa-check-circle feature-icon feature-success"></i>
                                 <span>Мультисерверные решения</span>
                             </li>
                             <li class="feature-item">
-                                <i class="fas fa-check feature-icon feature-success"></i>
+                                <i class="fas fa-check-circle feature-icon feature-success"></i>
                                 <span>Мобильный интерфейс</span>
                             </li>
                             <li class="feature-item">
-                                <i class="fas fa-times feature-icon feature-error"></i>
+                                <i class="fas fa-times-circle feature-icon feature-error"></i>
                                 <span>Высокие требования к железу</span>
                             </li>
                         </ul>
                         <div class="material-description">
                             Комплексное руководство по настройке кластерных решений и разработке кроссплатформенных мобильных интерфейсов.
                         </div>
-                        <a href="#" class="btn btn-block">Скачать материалы</a>
+                        <a href="#" class="btn">
+                            <i class="fas fa-download"></i>
+                            Скачать материалы
+                        </a>
                     </div>
-                </div>
+                </article>
 
                 <!-- Задание 3 -->
-                <div class="material-card">
+                <article class="material-card">
                     <div class="card-header">
                         <h2>Задание 3</h2>
                     </div>
                     <div class="card-body">
                         <ul class="features-list">
                             <li class="feature-item">
-                                <i class="fas fa-check feature-icon feature-success"></i>
+                                <i class="fas fa-check-circle feature-icon feature-success"></i>
                                 <span>Пост-деплой решения</span>
                             </li>
                             <li class="feature-item">
-                                <i class="fas fa-check feature-icon feature-success"></i>
+                                <i class="fas fa-check-circle feature-icon feature-success"></i>
                                 <span>Кастомизация ресурсов</span>
                             </li>
                             <li class="feature-item">
-                                <i class="fas fa-times feature-icon feature-error"></i>
+                                <i class="fas fa-times-circle feature-icon feature-error"></i>
                                 <span>Высокая стоимость</span>
                             </li>
                         </ul>
                         <div class="material-description">
                             Методические указания по развертыванию решений в production-среде и оптимизации ресурсов.
                         </div>
-                        <a href="#" class="btn btn-block">Скачать материалы</a>
+                        <a href="#" class="btn">
+                            <i class="fas fa-download"></i>
+                            Скачать материалы
+                        </a>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </main>
 
     <footer>
         <div class="container">
-            <p>© 2024 Архив учебных материалов. Все права защищены.</p>
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" class="footer-link">О проекте</a>
+                    <a href="#" class="footer-link">Контакты</a>
+                    <a href="#" class="footer-link">Помощь</a>
+                </div>
+                <p class="copyright">© 2024 Учебный архив. Все права защищены.</p>
+            </div>
         </div>
     </footer>
 </body>
