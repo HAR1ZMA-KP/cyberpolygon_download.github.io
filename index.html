@@ -5,134 +5,312 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Архив учебных материалов</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover i {
+            transform: rotate(15deg);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        main {
+            padding: 2rem 0;
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .material-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--secondary);
+        }
+
+        .material-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            background-color: var(--light);
+            border-bottom: 1px solid #eee;
+        }
+
+        .card-header h2 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+
+        .feature-icon {
+            margin-right: 10px;
+            font-size: 1.1rem;
+            min-width: 20px;
+        }
+
+        .feature-success {
+            color: var(--success);
+        }
+
+        .feature-error {
+            color: var(--danger);
+        }
+
+        .material-description {
+            background-color: var(--light);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(41, 128, 185, 0.3);
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <div class="logo">
-            <i class="fas fa-cloud-download-alt"></i>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-book-open"></i>
+                    <span>Учебный архив</span>
+                </a>
+                <div class="header-text">
+                    <h1>Архив учебных материалов</h1>
+                    <p class="subtitle">Скачивайте задания, лекции и дополнительные материалы</p>
+                </div>
+            </div>
         </div>
-        <h1>Архив учебных материалов</h1>
-        <p class="subtitle">Скачивайте задания, лекции и дополнительные материалы</p>
     </header>
-    
+
     <main>
-        <div class="materials-container">
-            <div class="material-card">
-                <h2>Задание 1</h2>
-                <div class="features">
-                    <div class="feature">
-                        <i class="fas fa-check"></i>
-                        <span>Основы работы с оборудованием</span>
+        <div class="container">
+            <div class="materials-grid">
+                <!-- Задание 1 -->
+                <div class="material-card">
+                    <div class="card-header">
+                        <h2>Задание 1</h2>
                     </div>
-                    <div class="feature">
-                        <i class="fas fa-check"></i>
-                        <span>Современные серверные решения</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-times"></i>
-                        <span>Ограничения системной архитектуры</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-times"></i>
-                        <span>Нестандартные ядра</span>
-                    </div>
-                </div>
-                <a href="#" class="download-btn">Скачать материалы</a>
-            </div>
-            
-            <div class="material-card">
-                <h2>Задание 2</h2>
-                <div class="features">
-                    <div class="feature">
-                        <i class="fas fa-check"></i>
-                        <span>Мультисерверные решения</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-check"></i>
-                        <span>Мобильный интерфейс</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-times"></i>
-                        <span>Высокие требования к железу</span>
+                    <div class="card-body">
+                        <ul class="features-list">
+                            <li class="feature-item">
+                                <i class="fas fa-check feature-icon feature-success"></i>
+                                <span>Основы работы с оборудованием</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-check feature-icon feature-success"></i>
+                                <span>Современные серверные решения</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-times feature-icon feature-error"></i>
+                                <span>Ограничения системной архитектуры</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-times feature-icon feature-error"></i>
+                                <span>Нестандартные ядра</span>
+                            </li>
+                        </ul>
+                        <div class="material-description">
+                            Подробное описание материалов для задания. Включает теоретические основы и практические примеры работы с современным оборудованием.
+                        </div>
+                        <a href="#" class="btn btn-block">Скачать материалы</a>
                     </div>
                 </div>
-                <a href="#" class="download-btn">Скачать материалы</a>
-            </div>
-            
-            <div class="material-card">
-                <h2>Задание 3</h2>
-                <div class="features">
-                    <div class="feature">
-                        <i class="fas fa-check"></i>
-                        <span>Пост-деплой решения</span>
+
+                <!-- Задание 2 -->
+                <div class="material-card">
+                    <div class="card-header">
+                        <h2>Задание 2</h2>
                     </div>
-                    <div class="feature">
-                        <i class="fas fa-check"></i>
-                        <span>Кастомизация ресурсов</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-times"></i>
-                        <span>Высокая стоимость</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-times"></i>
-                        <span>Нестандартные ядра</span>
-                    </div>
-                </div>
-                <a href="#" class="download-btn">Скачать материалы</a>
-            </div>
-        </div>
-        
-        <div class="description">
-            <h3>Платформа для образовательных материалов</h3>
-            <p>Современная платформа для Android устройств, основанная на Kali Linux, предоставляет доступ к образовательным приложениям, магазину приложений и контейнерным решениям.</p>
-            <p>Готовые решения с предустановленным Kali Linux позволяют сразу приступить к работе без необходимости настройки инфраструктуры.</p>
-        </div>
-        
-        <div class="materials-container">
-            <div class="material-card">
-                <h2>Доп. задание 1</h2>
-                <div class="features">
-                    <div class="feature">
-                        <i class="fas fa-check"></i>
-                        <span>Низкопроизводительные платы</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-times"></i>
-                        <span>Ограниченные материалы</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-times"></i>
-                        <span>Нет доступа к железу</span>
+                    <div class="card-body">
+                        <ul class="features-list">
+                            <li class="feature-item">
+                                <i class="fas fa-check feature-icon feature-success"></i>
+                                <span>Мультисерверные решения</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-check feature-icon feature-success"></i>
+                                <span>Мобильный интерфейс</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-times feature-icon feature-error"></i>
+                                <span>Высокие требования к железу</span>
+                            </li>
+                        </ul>
+                        <div class="material-description">
+                            Комплексное руководство по настройке кластерных решений и разработке кроссплатформенных мобильных интерфейсов.
+                        </div>
+                        <a href="#" class="btn btn-block">Скачать материалы</a>
                     </div>
                 </div>
-                <a href="#" class="download-btn">Скачать материалы</a>
-            </div>
-            
-            <div class="material-card">
-                <h2>Доп. задание 2</h2>
-                <div class="features">
-                    <div class="feature">
-                        <i class="fas fa-check"></i>
-                        <span>Энергоэффективные системы</span>
+
+                <!-- Задание 3 -->
+                <div class="material-card">
+                    <div class="card-header">
+                        <h2>Задание 3</h2>
                     </div>
-                    <div class="feature">
-                        <i class="fas fa-check"></i>
-                        <span>Прямой доступ к железу</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-times"></i>
-                        <span>Падение производительности</span>
+                    <div class="card-body">
+                        <ul class="features-list">
+                            <li class="feature-item">
+                                <i class="fas fa-check feature-icon feature-success"></i>
+                                <span>Пост-деплой решения</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-check feature-icon feature-success"></i>
+                                <span>Кастомизация ресурсов</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-times feature-icon feature-error"></i>
+                                <span>Высокая стоимость</span>
+                            </li>
+                        </ul>
+                        <div class="material-description">
+                            Методические указания по развертыванию решений в production-среде и оптимизации ресурсов.
+                        </div>
+                        <a href="#" class="btn btn-block">Скачать материалы</a>
                     </div>
                 </div>
-                <a href="#" class="download-btn">Скачать материалы</a>
             </div>
         </div>
     </main>
-    
+
     <footer>
-        <p>© 2024 Архив учебных материалов. Все права защищены.</p>
+        <div class="container">
+            <p>© 2024 Архив учебных материалов. Все права защищены.</p>
+        </div>
     </footer>
 </body>
 </html>
